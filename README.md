@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an app in which users can add, store and edit recipes.
 
-Things you may want to cover:
+## Stack
 
-* Ruby version
+This is meant as a practice app to get more familiar with the current Rails stack.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I plan to use Stimulus and Turbo to get a dynamic frontend, and to use the standard Rails 
+setup for the backend.
