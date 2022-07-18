@@ -16,6 +16,7 @@ gem "bootstrap-sass",  "3.4.1"
 
 group :development, :test do
   gem "sqlite3", "1.4.2"
+  gem 'pry'
   gem "debug",   "1.5.0", platforms: %i[ mri mingw x64_mingw ]
 end
 
