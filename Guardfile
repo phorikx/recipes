@@ -2,6 +2,8 @@
 
 require 'active_support/inflector'
 # Defines the matching rules for Guard.
+
+# rubocop:disable Metrics/BlockLength
 guard :minitest, all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
   watch('test/test_helper.rb') { 'test' }
@@ -52,6 +54,7 @@ guard :minitest, all_on_start: false do
      'test/integration/following_test.rb']
   end
 end
+# rubocop:enable Metrics/BlockLength
 
 # Returns the integration tests corresponding to the given resource.
 def integration_tests(resource = :all)
