@@ -61,4 +61,16 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
+
+  test 'password should be nonblank' do 
+    password = ' ' * 6
+    @user.password = @user.password_confirmation = password
+    assert_not @user.valid?
+  end
+  
+  test 'password should have minimum length' do
+    password = 'a' * 5
+    @user.password = @user.password_confirmation = password
+    assert_not @user.valid?
+  end
 end
