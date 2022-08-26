@@ -23,6 +23,7 @@ group :development, :test do
   gem 'debug', '1.5.0', platforms: %i[mri mingw x64_mingw]
   gem 'pry'
   gem 'rubocop'
+  gem 'simplecov'
   gem 'sqlite3', '1.4.2'
 end
 
