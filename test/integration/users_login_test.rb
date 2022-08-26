@@ -28,7 +28,7 @@ end
 class ValidLogin < UsersLogin
   def setup
     super
-    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    log_in_as @user
   end
 end
 
@@ -44,6 +44,10 @@ class ValidLoginTest < ValidLogin
     assert_select 'a[href=?]', login_path, count: 0
     assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', user_path(@user)
+  end
+
+  test 'has remember me cookie' do
+    assert_not cookies[:user_id].blank?
   end
 end
 
@@ -65,5 +69,24 @@ class LogoutTest < Logout
     assert_select 'a[href=?]', login_path
     assert_select 'a[href=?]', logout_path, count: 0
     assert_select 'a[href=?]', user_path(@user), count: 0
+  end
+
+  test 'Logout works when clicking in a second window' do
+    follow_redirect!
+    delete logout_path
+    follow_redirect!
+    assert_select 'a[href=?]', login_path
+    assert_select 'a[href=?]', logout_path,      count: 0
+    assert_select 'a[href=?]', user_path(@user), count: 0
+  end
+end
+
+class LoginTestNoRemember < UsersLogin
+  test 'remove cookie after login in again without cookie' do
+    # Log in to set the cookie.
+    log_in_as(@user, remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@user, remember_me: '0')
+    assert cookies[:remember_token].blank?
   end
 end

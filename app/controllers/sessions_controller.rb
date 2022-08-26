@@ -3,10 +3,12 @@
 class SessionsController < ApplicationController
   def new; end
 
+  # rubocop:disable Metrics/AbcSize
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email])
     if user&.authenticate(params[:session][:password])
       reset_session
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       redirect_to user
     else
@@ -14,9 +16,10 @@ class SessionsController < ApplicationController
       render 'new', status: :unprocessable_entity
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url, status: :see_other
   end
 end

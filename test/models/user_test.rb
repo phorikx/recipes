@@ -73,4 +73,8 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = password
     assert_not @user.valid?
   end
+
+  test 'authenticated? should return false when cookie is empty' do
+    assert_not @user.authenticated?('')
+  end
 end
