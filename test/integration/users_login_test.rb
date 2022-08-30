@@ -25,6 +25,16 @@ class InvalidPasswordTest < UsersLogin
   end
 end
 
+class FriendlyRedirectTest < UsersLogin
+  test 'gets redirected to path only once' do
+    get edit_user_path(@user)
+    log_in_as @user
+    assert_redirected_to edit_user_path @user
+    log_in_as @user
+    assert_redirected_to @user
+  end
+end
+
 class ValidLogin < UsersLogin
   def setup
     super
@@ -43,6 +53,8 @@ class ValidLoginTest < ValidLogin
     assert_template 'users/show'
     assert_select 'a[href=?]', login_path, count: 0
     assert_select 'a[href=?]', logout_path
+    assert_select 'a[href=?]', users_path
+    assert_select 'a[href=?]', edit_user_path(@user)
     assert_select 'a[href=?]', user_path(@user)
   end
 
