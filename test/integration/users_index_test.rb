@@ -1,12 +1,13 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
-
   def setup
     @admin = users :paul
     @other_user = users :archer
   end
-  
+
   test 'index includes pagination and delete links' do
     log_in_as @admin
     get users_path
@@ -15,9 +16,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     first_users_page = User.paginate(page: 1)
     first_users_page.each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
-      unless user == @admin 
-        assert_select 'a[href=?]', user_path(user), text: 'delete'
-      end
+      assert_select 'a[href=?]', user_path(user), text: 'delete' unless user == @admin
     end
     assert_difference 'User.count', -1 do
       delete user_path @other_user

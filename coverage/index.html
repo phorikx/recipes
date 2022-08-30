@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-30T21:31:17+02:00">2022-08-30T21:31:17+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-08-30T21:34:14+02:00">2022-08-30T21:34:14+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,7 +23,7 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  1.01%
+  1.02%
 </span>
 
      </span>
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>198</b> relevant lines,
+    <b>197</b> relevant lines,
     <span class="green"><b>2</b> lines covered</span> and
-    <span class="red"><b>196</b> lines missed. </span>
+    <span class="red"><b>195</b> lines missed. </span>
     (<span class="red">
-  1.01%
+  1.02%
 </span>
 )
   </div>
@@ -129,9 +129,9 @@
             <td class="strong t-file__name"><a href="#b18ddeb6c0fe7110059adcbe817b29e3670edd2d" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">74</td>
-            <td class="cell--number">60</td>
+            <td class="cell--number">59</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">60</td>
+            <td class="cell--number">59</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -256,9 +256,9 @@
   </div>
 
   <div class="t-line-summary">
-    <b>89</b> relevant lines,
+    <b>88</b> relevant lines,
     <span class="green"><b>0</b> lines covered</span> and
-    <span class="red"><b>89</b> lines missed. </span>
+    <span class="red"><b>88</b> lines missed. </span>
     (<span class="red">
   0.0%
 </span>
@@ -320,9 +320,9 @@
             <td class="strong t-file__name"><a href="#b18ddeb6c0fe7110059adcbe817b29e3670edd2d" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">74</td>
-            <td class="cell--number">60</td>
+            <td class="cell--number">59</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">60</td>
+            <td class="cell--number">59</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -1564,9 +1564,9 @@
     
 
     <div class="t-line-summary">
-      <b>60</b> relevant lines.
+      <b>59</b> relevant lines.
       <span class="green"><b>0</b> lines covered</span> and
-      <span class="red"><b>60</b> lines missed.</span>
+      <span class="red"><b>59</b> lines missed.</span>
     </div>
 
     
@@ -1616,7 +1616,7 @@
 
             
 
-            <code class="ruby">  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]</code>
+            <code class="ruby">  before_action :logged_in_user, only: %i[index edit update destroy]</code>
           </li>
         </div>
       
@@ -1627,7 +1627,7 @@
 
             
 
-            <code class="ruby">  before_action :correct_user, only: [:edit, :update]</code>
+            <code class="ruby">  before_action :correct_user, only: %i[edit update]</code>
           </li>
         </div>
       
@@ -1858,7 +1858,7 @@
 
             
 
-            <code class="ruby">    flash[:success] = &quot;User deleted&quot;</code>
+            <code class="ruby">    flash[:success] = &#39;User deleted&#39;</code>
           </li>
         </div>
       
@@ -2221,18 +2221,18 @@
 
             
 
-            <code class="ruby">    unless logged_in?</code>
+            <code class="ruby">    return if logged_in?</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="60">
+          <li class="never" data-hits="" data-linenumber="60">
             
             
 
             
 
-            <code class="ruby">      store_location</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2243,7 +2243,7 @@
 
             
 
-            <code class="ruby">      flash[:danger] = &quot;Please log in&quot;</code>
+            <code class="ruby">    store_location</code>
           </li>
         </div>
       
@@ -2254,7 +2254,7 @@
 
             
 
-            <code class="ruby">      redirect_to login_url, status: :see_other</code>
+            <code class="ruby">    flash[:danger] = &#39;Please log in&#39;</code>
           </li>
         </div>
       
@@ -2265,7 +2265,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    redirect_to login_url, status: :see_other</code>
           </li>
         </div>
       
@@ -2844,7 +2844,7 @@
 
             
 
-            <code class="ruby">  def current_user? user</code>
+            <code class="ruby">  def current_user?(user)</code>
           </li>
         </div>
       
