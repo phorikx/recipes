@@ -75,6 +75,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'authenticated? should return false when cookie is empty' do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 end

@@ -1,5 +1,24 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - '.git/**/*'
+    - 'bin/*'
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+
+Metrics/BlockLength:
+  Enabled: false
+  Exclude: 
+    - 'config/**/*.rb'
+
 Style/Documentation:
   Enabled: false
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/MethodLength:
-  Max: 15
+  Exclude:
+    - 'test/**/*.rb'

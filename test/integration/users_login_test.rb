@@ -9,12 +9,15 @@ class UsersLogin < ActionDispatch::IntegrationTest
 end
 
 class InvalidPasswordTest < UsersLogin
-  test 'login with invalid information' do
+  test 'login path' do
     get login_path
     assert_template 'sessions/new'
+  end
 
-    post login_path, params: { session: { email: '', password: '' } }
+  test 'login with valid email, invalid password' do
+    post login_path, params: { session: { email: @user.email, password: '' } }
 
+    assert_not logged_in?
     assert_response :unprocessable_entity
     assert_template 'sessions/new'
     assert_not flash.empty?
@@ -95,6 +98,21 @@ end
 
 class LoginTestNoRemember < UsersLogin
   test 'remove cookie after login in again without cookie' do
+    # Log in to set the cookie.
+    log_in_as(@user, remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@user, remember_me: '0')
+    assert cookies[:remember_token].blank?
+  end
+end
+
+class RememberingTest < UsersLogin
+  test 'login with remembering' do
+    log_in_as(@user, remember_me: '1')
+    assert_not cookies[:remember_token].blank?
+  end
+
+  test 'login without remembering' do
     # Log in to set the cookie.
     log_in_as(@user, remember_me: '1')
     # Log in again and verify that the cookie is deleted.
